@@ -1,0 +1,23 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import ssl
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+# url = input('Enter - ')
+url = 'http://py4e-data.dr-chuck.net/comments_98935.html'
+html = urlopen(url, context=ctx).read() #this helps read the url open
+soup = BeautifulSoup(html, "html.parser") 
+sum=0 # since we are finding the sum. I need to start by 0
+
+# Retrieve all of the anchor tags
+tags = soup('span') #i want to find the text where <span is located>
+for tag in tags: #I need to create a loop. 
+    # Look at the parts of a tag
+    content=tag.contents[0] #I need to find contents after the 0 position of the tag 
+    addon=int(content) #i need to create the content into integers
+    sum += addon #I need to create a loop to add the repeating contents to one another after they have been converted to integers.
+print(sum) #print the exercise once completed
