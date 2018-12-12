@@ -1,0 +1,16 @@
+import urllib.request, urllib.parse, urllib.error
+import xml.etree.ElementTree as ET
+
+startingurl = ' http://py4e-data.dr-chuck.net/comments_98937.xml' # start by unputing your url
+print ('Retrieving', startingurl)  #print it
+openurl = urllib.request.urlopen(startingurl) #now you must request to open your url
+data = openurl.read() #read what it has inside
+print('Retrieved', len(data), 'characters') #count the amount of retrieved data in the data
+tree = ET.fromstring(data)
+counts = tree.findall('.//count')
+print ('Count',len(counts)) #this helps find your counts. 
+sum=0
+for element in counts:
+    addon=element.text
+    sum +=int(addon)
+print(sum)
