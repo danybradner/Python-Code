@@ -1,0 +1,13 @@
+def computepay(hours,rate):
+    hours_worked=float(hours)
+    payrate=float(rate)
+    if hours_worked > 40:
+       payroll = payrate * 40.0
+       payroll = payroll+(1.5*payrate*(hours_worked-40))
+       print("Overtime is", payroll)
+    else:
+        payroll=payrate*40
+        print("your pay is", payroll)
+hours=input("Enter hours:")
+rate=input("Enter rate:")
+computepay(hours, rate)
